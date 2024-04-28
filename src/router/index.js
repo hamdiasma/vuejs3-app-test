@@ -1,19 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from "@/views/public/Home.vue"
-import About from "@/views/public/About.vue"
-import Contact from "@/views/public/Contact.vue"
-import Cocktail from "@/views/public/Cocktail.vue"
-import PublicLayout from "@/views/public/PublicLayout.vue"
-import NotFound from "@/views/public/NotFound.vue"
 
-import AdminLayout from "@/views/admin/AdminLayout.vue"
-import Dashboard from "@/views/admin/Dashboard.vue"
-import UserEdit from "@/views/admin/user/UserEdit.vue"
-import UserAdd from "@/views/admin/user/UserAdd.vue"
-import UserIndex from "@/views/admin/user/UserIndex.vue"
-
-import CocktaiIIndex from "@/views/admin/cocktails/CocktaiIIndex.vue"
-import CocktailEdit from "@/views/admin/cocktails/CocktailEdit.vue"
+import * as Public from "@/views/public"  
+import * as Admin from "@/views/admin"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,70 +9,70 @@ const router = createRouter({
     {
       path: '/',
       name: 'public-layout',
-      component: PublicLayout,
+      component: Public.PublicLayout,
       children:[
         {
           path: '/',
           name: 'home',
-          component: Home
+          component: Public.Home
         },
         {
           path: '/about',
           name: 'about',
-          component: About
+          component: Public.About
         },
         {
           path: '/contact',
           name: 'contact',
-          component: Contact
+          component: Public.Contact
         },
         {
           path: '/cocktails',
           name: 'cocktails',
-          component: Cocktail
+          component: Public.Cocktail
         },
       ]
     },
     {
       path: '/admin',
       name: 'admin-layout',
-      component: AdminLayout,
+      component: Admin.AdminLayout,
       children:[
         {
           path: 'dashboard',
           name: 'Dashboard',
-          component: Dashboard
+          component: Admin.Dashboard
         },
         {
           path: 'users/index',
           name: 'User index',
-          component: UserIndex
+          component: Admin.UserIndex
         },
         {
           path: 'users/edit/:id',
           name: 'User Edit',
-          component: UserEdit
+          component: Admin.UserEdit
         },
         {
           path: 'users/add',
           name: 'user add',
-          component: UserEdit
+          component: Admin.UserAdd
         },
         {
           path: 'cocktails/index',
           name: 'cocktails index',
-          component: CocktaiIIndex
+          component: Admin.CocktaiIIndex
         },
         {
           path: 'cocktails/edit/:id',
           name: 'cocktails edit',
-          component: CocktailEdit
+          component: Admin.CocktailEdit
         },
       ]
     },
     {
       path: '/:pathMatchall(.*)*',
-      component: NotFound
+      component: Public.NotFound
     },
   ]
 })
