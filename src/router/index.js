@@ -1,22 +1,80 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Home from "@/views/public/Home.vue"
+import About from "@/views/public/About.vue"
+import Contact from "@/views/public/Contact.vue"
+import Cocktail from "@/views/public/Cocktail.vue"
+import PublicLayout from "@/views/public/PublicLayout.vue"
+import NotFound from "@/views/public/NotFound.vue"
+
+import AdminLayout from "@/views/admin/AdminLayout.vue"
+import Dashboard from "@/views/admin/Dashboard.vue"
+import UserEdit from "@/views/admin/user/UserEdit.vue"
+import UserAdd from "@/views/admin/user/UserAdd.vue"
+import UserIndex from "@/views/admin/user/UserIndex.vue"
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'public-layout',
+      component: PublicLayout,
+      children:[
+        {
+          path: '/',
+          name: 'home',
+          component: Home
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: About
+        },
+        {
+          path: '/contact',
+          name: 'contact',
+          component: Contact
+        },
+        {
+          path: '/cocktails',
+          name: 'cocktails',
+          component: Cocktail
+        },
+      ]
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
+      path: '/admin',
+      name: 'admin-layout',
+      component: AdminLayout,
+      children:[
+        {
+          path: 'dashboard',
+          name: 'Dashboard',
+          component: Dashboard
+        },
+        {
+          path: 'users/index',
+          name: 'User index',
+          component: UserIndex
+        },
+        {
+          path: 'users/edit/:id',
+          name: 'User Edit',
+          component: UserEdit
+        },
+        {
+          path: 'users/add',
+          name: 'user add',
+          component: UserEdit
+        },
+      ]
+    },
+    {
+      path: '/:pathMatchall(.*)*',
+      component: NotFound
+    },
   ]
 })
 
