@@ -12,7 +12,8 @@ import UserEdit from "@/views/admin/user/UserEdit.vue"
 import UserAdd from "@/views/admin/user/UserAdd.vue"
 import UserIndex from "@/views/admin/user/UserIndex.vue"
 
-
+import CocktaiIIndex from "@/views/admin/cocktails/CocktaiIIndex.vue"
+import CocktailEdit from "@/views/admin/cocktails/CocktailEdit.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,6 +69,16 @@ const router = createRouter({
           path: 'users/add',
           name: 'user add',
           component: UserEdit
+        },
+        {
+          path: 'cocktails/index',
+          name: 'cocktails index',
+          component: CocktaiIIndex
+        },
+        {
+          path: 'cocktails/edit/:id',
+          name: 'cocktails edit',
+          component: CocktailEdit
         },
       ]
     },
