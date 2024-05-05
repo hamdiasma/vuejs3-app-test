@@ -49,9 +49,9 @@ const router = createRouter({
           component: Admin.UserIndex
         },
         {
-          path: 'users/edit/:id',
+          path: 'users/edit/:id(\\d+)',
           name: 'User Edit',
-          component: Admin.UserEdit
+          component: Admin.UserEdit, props:true
         },
         {
           path: 'users/add',
@@ -67,6 +67,10 @@ const router = createRouter({
           path: 'cocktails/edit/:id',
           name: 'cocktails edit',
           component: Admin.CocktailEdit
+        },
+        {
+          path: '/:pathMatchall(.*)*',
+          redirect:'/admin/dashboard'
         },
       ]
     },
