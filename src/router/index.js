@@ -4,6 +4,11 @@ import * as Public from "@/views/public"
 import * as Admin from "@/views/admin"
 import * as Auth from "@/views/auth"
 
+import {suthGuard} from "@/_helpers/auth-guard"
+
+// localStorage.setItem("token","layane")
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -77,8 +82,7 @@ const router = createRouter({
     },
     {
       path: '/login',
-      component: Auth.Login
-    },
+      component: Auth.Login ,beforeEnter: suthGuard},
     {
       path: '/:pathMatchall(.*)*',
       component: Public.NotFound
