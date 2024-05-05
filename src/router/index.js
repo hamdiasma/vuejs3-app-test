@@ -4,7 +4,7 @@ import * as Public from "@/views/public"
 import * as Admin from "@/views/admin"
 import * as Auth from "@/views/auth"
 
-import {suthGuard} from "@/_helpers/auth-guard"
+import {authGuard} from "@/_helpers/auth-guard"
 
 // localStorage.setItem("token","layane")
 
@@ -41,7 +41,8 @@ const router = createRouter({
     },
     {
       path: '/admin',
-      name: 'admin-layout',
+      name: 'admin',
+      // beforeEnter:suthGuard, on letulise pas dans le cas de children "simple route"
       component: Admin.AdminLayout,
       children:[
         {
@@ -82,12 +83,19 @@ const router = createRouter({
     },
     {
       path: '/login',
-      component: Auth.Login ,beforeEnter: suthGuard},
+      component: Auth.Login},
     {
       path: '/:pathMatchall(.*)*',
       component: Public.NotFound
     },
   ]
+})
+
+router.beforeEach((to, from, next) => {
+ if(to.matched[0].name ==="admin"){
+  authGuard()
+ }
+ next()
 })
 
 export default router

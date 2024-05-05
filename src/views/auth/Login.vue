@@ -27,7 +27,8 @@ export default {
   },
   methods: {
     login() {
-      console.log(this.userDAta);
+      localStorage.setItem("token","hamdi");
+      this.$router.push('/admin/dashboard')
     }
   }
 };
