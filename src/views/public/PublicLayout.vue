@@ -2,7 +2,6 @@
 
 <template>
     <div>
-        bublic layout
         <NavPublic/>
         <RouterView/>
     </div>

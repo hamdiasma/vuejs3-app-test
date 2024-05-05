@@ -16,4 +16,11 @@
 import {  RouterView } from "vue-router";
 </script>
 <style scoped>
+.logo{
+  position: absolute;
+  right: 30px;
+  top: 0;
+  width: 30px;
+  z-index: -1;
+}
 </style>
