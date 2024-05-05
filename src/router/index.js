@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import * as Public from "@/views/public"  
 import * as Admin from "@/views/admin"
+import * as Auth from "@/views/auth"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -73,6 +74,10 @@ const router = createRouter({
           redirect:'/admin/dashboard'
         },
       ]
+    },
+    {
+      path: '/login',
+      component: Auth.Login
     },
     {
       path: '/:pathMatchall(.*)*',
