@@ -103,7 +103,6 @@ const router = createRouter({
 // verouikkage les page admin
 
 router.beforeEach((to, from, next) => {
-  console.log({ to, from });
   /* methode avec meta
 if(to.meta.requiresAuth){
   authGuard();
