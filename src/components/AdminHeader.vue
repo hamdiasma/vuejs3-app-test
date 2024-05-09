@@ -1,17 +1,27 @@
 <template>
     <div class="ad_head">
-        AdminHeader
+        AdminHeader 
+        <button @click="logeOut">Logout</button>
     </div>
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
+import {accountServices} from "@/_services"
+const router = useRouter()
 
+       const logeOut=()=>{
+            accountServices.logout()
+            router.push("/")
+        }
 </script>
 
 
 <style scoped>
 .ad_head{
     border: 1px solid green;
+}
+button{
+    float: right
 }
 </style>
