@@ -3,9 +3,7 @@ import router  from "@/router"
 
 export function authGuard(to) { 
     let token = localStorage.getItem("token")
-    console.log('====================================');
     console.log(token);
-    console.log('====================================');
 
     if(token){
         return true
@@ -13,3 +11,16 @@ export function authGuard(to) {
 
     router.push("/login")
  }
+
+ export function authGuardLog(to) { 
+
+    let token = localStorage.getItem("token")
+    if(token){
+        router.push("/")
+       
+    }else{
+        return true
+    }
+ }
+
+ export const URL_APP = "http://localhost:8888"

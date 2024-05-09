@@ -4,7 +4,7 @@ import * as Public from "@/views/public";
 import * as Admin from "@/views/admin";
 import * as Auth from "@/views/auth";
 
-import { authGuard } from "@/_helpers/auth-guard";
+import { authGuard, authGuardLog } from "@/_helpers/auth-guard";
 
 // localStorage.setItem("token","layane")
 
@@ -41,6 +41,7 @@ const router = createRouter({
     {
       path: "/admin",
       name: "admin",
+      // beforeEnter:authGuard,
       // beforeEnter:suthGuard, on letulise pas dans le cas de children "simple route"
       component: Admin.AdminLayout,
       children: [
@@ -54,37 +55,44 @@ const router = createRouter({
           path: "users/index",
           name: "User index",
           component: Admin.UserIndex,
+          meta: { requiresAuth: true },
         },
         {
           path: "users/edit/:id(\\d+)",
           name: "User Edit",
           component: Admin.UserEdit,
           props: true,
+          meta: { requiresAuth: true },
         },
         {
           path: "users/add",
           name: "user add",
           component: Admin.UserAdd,
+          meta: { requiresAuth: true },
         },
         {
           path: "cocktails/index",
           name: "cocktails index",
           component: Admin.CocktaiIIndex,
+          meta: { requiresAuth: true },
         },
         {
           path: "cocktails/edit/:id",
           name: "cocktails edit",
           component: Admin.CocktailEdit,
+          meta: { requiresAuth: true },
         },
         {
           path: "/:pathMatchall(.*)*",
           redirect: "/admin/dashboard",
+          meta: { requiresAuth: true },
         },
       ],
     },
     {
       path: "/login",
       component: Auth.Login,
+      beforeEnter: authGuardLog,
     },
     {
       path: "/:pathMatchall(.*)*",
@@ -92,15 +100,19 @@ const router = createRouter({
     },
   ],
 });
+// verouikkage les page admin
 
 router.beforeEach((to, from, next) => {
-  console.log('====================================');
-  console.log(to.meta.requiresAuth);
-  console.log('====================================');
-  // if (to.matched[0].name === "admin") {
-  //   authGuard();
-  // }
-    if (to.meta.requiresAuth) {
+  console.log({ to, from });
+  /* methode avec meta
+if(to.meta.requiresAuth){
+  authGuard();
+
+}
+*/
+  // methode avec matched
+
+  if (to.matched[0].name == "admin") {
     authGuard();
   }
   next();

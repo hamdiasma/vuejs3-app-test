@@ -3,7 +3,7 @@
     <h1>Connexion</h1>
     <form @submit.prevent="login">
       <div class="formGroup">
-        <label for="user_login">Login</label> <input id="user_login" type="text" v-model="userDAta.login" />{{ userDAta.login }}
+        <label for="user_login">Login</label> <input id="user_login" type="text" v-model="userDAta.email" />{{ userDAta.email }}
       </div>
       <div class="formGroup">
         <label for="user_password">Mot de passe</label>
@@ -15,20 +15,36 @@
 </template>
 
 <script>
+import { URL_APP } from "@/_helpers/auth-guard";
+import router from '@/router';
 export default {
   name: "Login",
   data() {
     return {
       userDAta: {
-        login: "",
+        email: "",
         password: ""
       }
     };
   },
   methods: {
     login() {
-      localStorage.setItem("token","hamdi");
-      this.$router.push('/admin/dashboard')
+      fetch(`${URL_APP}/auth/login`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        method: "POST",
+        body: JSON.stringify(this.userDAta)
+      })
+        .then(res => res.json())
+        .then(data => {
+           if(data?.access_token){
+            localStorage.setItem("token", data.access_token);
+            router.push("/admin/dashboard")
+           }
+        })
+        .catch(err => console.log(err));
     }
   }
 };
