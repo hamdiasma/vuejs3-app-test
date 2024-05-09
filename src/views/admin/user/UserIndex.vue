@@ -5,7 +5,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom</th>
+                <th >Nom</th>
                 <th>Prenom</th>
                 <th>Email</th>
                 <th>Creation</th>
@@ -14,7 +14,7 @@
         <tbody>
             <tr v-for="(user, index) in users" :key="user.id">
             <td>{{ user.id }}</td>
-            <td>{{ user.nom }}</td>
+            <td class="edit" @click="goEdit( user.id )">{{ user.nom }}</td>
             <td>{{ user.prenom }}</td>
             <td>{{ user.email }}</td>
             <td>{{dateFormat[index] }}</td>
@@ -45,6 +45,11 @@ export default {
     // dateFormat(date){
     //   return  date.split("T")[0].split('-').reverse().join("/")
     // }
+    goEdit(id){
+    //  this.$router.push("/admin/users/edit/"+id)
+     this.$router.push({name:"uEdit",params:{id}})
+    
+    }
   },
   computed:{
     comptage(){
@@ -56,3 +61,15 @@ export default {
   }
 };
 </script>
+
+<style  scoped>
+.edit{
+    cursor: pointer;
+    color: blue;
+}
+.edit:hover{
+    font: bolder;
+    color: red;
+
+}
+</style>

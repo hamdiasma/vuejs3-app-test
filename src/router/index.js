@@ -59,7 +59,7 @@ const router = createRouter({
         },
         {
           path: "users/edit/:id(\\d+)",
-          name: "User Edit",
+          name: "uEdit",
           component: Admin.UserEdit,
           props: true,
           meta: { requiresAuth: true },
