@@ -11,8 +11,13 @@ let etidUser = (user) => {
   return Axios.patch("/users/" + user.id, user);
 };
 
+let addUser = (user) => {
+  return Axios.put("/users/", user);
+};
+
 export const userServices = {
   getAllusers,
   getUsers,
-  etidUser
+  etidUser,
+  addUser
 };
