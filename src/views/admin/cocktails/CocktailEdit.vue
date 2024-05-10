@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h3>Page CocktailEdit</h3>
+    <h3>Page Cocktail Add-Edit</h3>
+    {{ id }}
     <form @submit.prevent="add">
       <div class="formGroup">
         <label for="user_prenom">nom</label> <input id="user_prenom" type="text" v-model="cocktailData.nom" />
@@ -18,8 +19,10 @@
 
 <script>
 import { cocktailsServices } from "@/_services";
+import {watch} from 'vue'
 export default {
   name: "CocktailEdi",
+  props:["id"],
   data() {
     return {
       cocktailData: {
@@ -27,7 +30,8 @@ export default {
         nom: "",
         description: "",
         recette: ""
-      }
+      },
+    //   func: false
     };
   },
   methods: {
@@ -37,8 +41,33 @@ export default {
         .addCocktail(this.cocktailData)
         .then(res => this.$router.push({name:'lIndex'}))
         .catch(err => console.log(err));
+    },
+    edit(){
+
     }
-  }
+  },
+  mounted() {
+    if(this.id){
+        cocktailsServices
+        .getCocktail(this.id)
+        .then(res => this.cocktailData =res?.data?.data )
+        .catch(err => console.log(err));
+    }
+  },
+  setup(props) {
+    watch(props,(value,old)=>{
+        console.log("value : ",value.id);
+    //   if(!value.id){
+    //     this.cocktailData = {
+    //     user_id: "9",
+    //     nom: "",
+    //     description: "",
+    //     recette: ""
+    //   }
+    //   }
+    }) 
+  },
+
 };
 </script>
 

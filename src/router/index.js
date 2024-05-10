@@ -77,10 +77,11 @@ const router = createRouter({
           meta: { requiresAuth: true },
         },
         {
-          path: "cocktails/edit",
+          path: "cocktails/edit/:id(\\d+)?",
           name: "cEdit",
           component: Admin.CocktailEdit,
           meta: { requiresAuth: true },
+          props:true
         },
         {
           path: "/:pathMatchall(.*)*",

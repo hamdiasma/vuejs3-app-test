@@ -41,7 +41,6 @@
         cocktailsServices
         .getAllCocktails()
         .then(res => {
-          console.log(res.data.data);
           this.cocktails = res.data?.data;
         })
         .catch(error => console.log(error));
