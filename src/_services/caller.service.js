@@ -20,7 +20,7 @@ Axios.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.statusText === "Unauthorized") {
+    if (error.response.status === 401) {
       accountServices.logout();
       router.push("/login");
     }

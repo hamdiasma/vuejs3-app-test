@@ -53,7 +53,7 @@ const router = createRouter({
         },
         {
           path: "users/index",
-          name: "User index",
+          name: "uIndex",
           component: Admin.UserIndex,
           meta: { requiresAuth: true },
         },
