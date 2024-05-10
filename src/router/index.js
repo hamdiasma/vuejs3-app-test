@@ -72,13 +72,13 @@ const router = createRouter({
         },
         {
           path: "cocktails/index",
-          name: "cocktails index",
+          name: "lIndex",
           component: Admin.CocktaiIIndex,
           meta: { requiresAuth: true },
         },
         {
-          path: "cocktails/edit/:id",
-          name: "cocktails edit",
+          path: "cocktails/edit",
+          name: "cEdit",
           component: Admin.CocktailEdit,
           meta: { requiresAuth: true },
         },

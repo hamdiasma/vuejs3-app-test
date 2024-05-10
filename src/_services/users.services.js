@@ -14,10 +14,14 @@ let etidUser = (user) => {
 let addUser = (user) => {
   return Axios.put("/users/", user);
 };
+let delUser = (id) => {
+  return Axios.delete("/users/"+ id);
+};
 
 export const userServices = {
   getAllusers,
   getUsers,
   etidUser,
-  addUser
+  addUser,
+  delUser
 };

@@ -59,7 +59,7 @@ export default {
       if (this.errors.length===0) {
         userServices
           .addUser(this.userDAta)
-          .then(res => console.log(res?.data))
+          .then(res => this.$router.push({name:'uIndex'}))
           .catch(err => console.log(err));
       }
     }
