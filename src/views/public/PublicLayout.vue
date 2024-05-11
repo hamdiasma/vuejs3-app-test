@@ -2,9 +2,10 @@
 
 <template>
     <div>
-        {{ aff }}
-      <!--  {{ aff }}-->
       {{ GETTER_HAMDI }}
+
+        {{ GETTER_USERS(1) }}
+      <!--  {{ aff }}-->
         <NavPublic/>
         <RouterView/>
     </div>
@@ -30,7 +31,7 @@ export default{
     //     this.aff = this.$store.getters["GETTER_HAMDI"]
     // },
     computed: {
-        ...mapGetters(["GETTER_HAMDI"])
+        ...mapGetters(["GETTER_HAMDI","GETTER_USERS"])
     },
 }
 
