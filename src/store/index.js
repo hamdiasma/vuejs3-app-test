@@ -18,15 +18,19 @@ export default createStore({
     GETTER_HAMDI(state) {
       return state.users[0].nom;
     },
-    // GETTER_USERS(state) {
-    //     return state.users[id].nom;
-    // }
+    GETTER_USERS_COUNT(state) {
+        return state.users.length;
+    },
     // pour passer un id
     GETTER_USERS:(state)=>(id)=> {
         return state.users[id].nom;
     }
   },
-  mutations: {},
+  mutations: {
+    changeHamdi(state, payload){
+        state.users = [...state.users, payload]
+    }
+  },
   actions: {},
   modules: {}
 });
