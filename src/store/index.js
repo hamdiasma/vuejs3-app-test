@@ -29,8 +29,18 @@ export default createStore({
   mutations: {
     changeHamdi(state, payload){
         state.users = [...state.users, payload]
+        state.users[0].nom = payload.nom
     }
   },
-  actions: {},
+  actions: {
+    modify(context){
+      console.log(context);
+    //   context.state.users[0].nom = "hello"
+    context.commit('changeHamdi',{ 
+        id: context.state.users.length,
+        nom: "Acheck"
+      })
+    }
+  },
   modules: {}
 });

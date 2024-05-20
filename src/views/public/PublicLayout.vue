@@ -9,6 +9,7 @@
         <button @click="change">Change Username</button>
       <!--  {{ aff }}-->
         <NavPublic/>
+        <button @click="clickAction">clickAction</button>
         <RouterView/>
     </div>
 </template>
@@ -36,11 +37,16 @@ export default{
         ...mapGetters(["GETTER_HAMDI","GETTER_USERS","GETTER_USERS_COUNT"]),
     },
     methods: {
-        // ...mapMutations(["changeHamdi"]) // on utlise mapMutations sur methods
+        ...mapMutations(["changeHamdi"]), // on utlise mapMutations sur methods
 
         change(){
             //commit appel mutation
-         this.$store.commit("changeHamdi",{id:2 , nom:"asma"})
+        //  this.$store.commit("changeHamdi",)
+        //or
+        this.changeHamdi({id:2 , nom:"asma"})
+        },
+        clickAction(){
+            this.$store.dispatch("modify")
         }
     },
 }
